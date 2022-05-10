@@ -1,0 +1,70 @@
+name: manage-azure-policy-9f58f411
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'PolicyExport/policies/Audit_virtual_machines_without_disaster_recovery_configured_0015ea4d-51ff-4ce3-8d8c-f3f8f0179a56/**'
+#      - 'PolicyExport/policies/Vulnerability_assessment_should_be_enabled_on_your_Synapse_workspaces_0049a6b3-a662-4f3e-8635-39cf44ace45a/**'
+#      - 'PolicyExport/policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**'
+#      - 'PolicyExport/policies/_Preview_Configure_VMSS_created_with_Shared_Image_Gallery_images_to_install_the_Guest_Attestation_extension_009259b0-12e8-42c9-94e7-7af86aa58d13/**'
+#      - 'PolicyExport/policies/Private_endpoint_connections_on_Batch_accounts_should_be_enabled_009a0c92-f5b4-4776-9b66-4ed2b4775563/**'
+#      - 'PolicyExport/policies/Azure_Backup_should_be_enabled_for_Virtual_Machines_013e242c-8828-4970-87b3-ab247555486d/**'
+#      - 'PolicyExport/policies/_Preview_Azure_Security_agent_should_be_installed_on_your_Windows_Arc_machines_0367cfc4-90b3-46ba-a8a6-ddd5d3514878/**'
+#      - 'PolicyExport/policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**'
+#      - 'PolicyExport/policies/Azure_Kubernetes_Service_Private_Clusters_should_be_enabled_040732e8-d947-40b8-95d6-854c95024bf8/**'
+#      - 'PolicyExport/policies/Audit_Linux_machines_that_have_the_specified_applications_installed_0447bc18-e2f7-4c0d-aa20-bff034275be1/**'
+#      - 'PolicyExport/initiatives/NIST_SP_800-171_Rev._2_03055927-78bd-4236-86c0-f36125a10dc9/**'
+#      - 'PolicyExport/initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**'
+#      - 'PolicyExport/initiatives/IRS1075_September_2016_105e0327-6175-4eb2-9af4-1fba43bdb39d/**'
+#      - 'PolicyExport/initiatives/Configure_Linux_machines_to_run_Azure_Monitor_Agent_and_associate_them_to_a_Data_Collection_Rule_118f04da-0375-44d1-84e3-0fd9e1849403/**'
+#      - 'PolicyExport/initiatives/Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**'
+#      - 'PolicyExport/initiatives/NIST_SP_800-53_Rev._5_179d1daa-458f-4e47-8086-2a68d0d6c38f/**'
+#      - 'PolicyExport/initiatives/CIS_Microsoft_Azure_Foundations_Benchmark_v1.1.0_1a5bb27d-173f-493e-9568-eb56638dde4d/**'
+#      - 'PolicyExport/initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**'
+#      - 'PolicyExport/initiatives/_Preview_Australian_Government_ISM_PROTECTED_27272c0b-c225-4cc3-b8b0-f2534b093077/**'
+#      - 'PolicyExport/initiatives/_Preview_Configure_prerequisites_to_enable_Guest_Attestation_on_Trusted_Launch_enabled_VMs_281d9e47-d14d-4f05-b8eb-18f2c4a034ff/**'
+#      - .github/workflows/manage-azure-policy-9f58f411.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_9f58f411}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          PolicyExport/policies/Audit_virtual_machines_without_disaster_recovery_configured_0015ea4d-51ff-4ce3-8d8c-f3f8f0179a56/**
+          PolicyExport/policies/Vulnerability_assessment_should_be_enabled_on_your_Synapse_workspaces_0049a6b3-a662-4f3e-8635-39cf44ace45a/**
+          PolicyExport/policies/SQL_Server_Integration_Services_integration_runtimes_on_Azure_Data_Factory_should_be_joined_to_a_virtual_network_0088bc63-6dee-4a9c-9d29-91cfdc848952/**
+          PolicyExport/policies/_Preview_Configure_VMSS_created_with_Shared_Image_Gallery_images_to_install_the_Guest_Attestation_extension_009259b0-12e8-42c9-94e7-7af86aa58d13/**
+          PolicyExport/policies/Private_endpoint_connections_on_Batch_accounts_should_be_enabled_009a0c92-f5b4-4776-9b66-4ed2b4775563/**
+          PolicyExport/policies/Azure_Backup_should_be_enabled_for_Virtual_Machines_013e242c-8828-4970-87b3-ab247555486d/**
+          PolicyExport/policies/_Preview_Azure_Security_agent_should_be_installed_on_your_Windows_Arc_machines_0367cfc4-90b3-46ba-a8a6-ddd5d3514878/**
+          PolicyExport/policies/Cognitive_Services_accounts_should_restrict_network_access_037eea7a-bd0a-46c5-9a66-03aea78705d3/**
+          PolicyExport/policies/Azure_Kubernetes_Service_Private_Clusters_should_be_enabled_040732e8-d947-40b8-95d6-854c95024bf8/**
+          PolicyExport/policies/Audit_Linux_machines_that_have_the_specified_applications_installed_0447bc18-e2f7-4c0d-aa20-bff034275be1/**
+          PolicyExport/initiatives/NIST_SP_800-171_Rev._2_03055927-78bd-4236-86c0-f36125a10dc9/**
+          PolicyExport/initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**
+          PolicyExport/initiatives/IRS1075_September_2016_105e0327-6175-4eb2-9af4-1fba43bdb39d/**
+          PolicyExport/initiatives/Configure_Linux_machines_to_run_Azure_Monitor_Agent_and_associate_them_to_a_Data_Collection_Rule_118f04da-0375-44d1-84e3-0fd9e1849403/**
+          PolicyExport/initiatives/Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**
+          PolicyExport/initiatives/NIST_SP_800-53_Rev._5_179d1daa-458f-4e47-8086-2a68d0d6c38f/**
+          PolicyExport/initiatives/CIS_Microsoft_Azure_Foundations_Benchmark_v1.1.0_1a5bb27d-173f-493e-9568-eb56638dde4d/**
+          PolicyExport/initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**
+          PolicyExport/initiatives/_Preview_Australian_Government_ISM_PROTECTED_27272c0b-c225-4cc3-b8b0-f2534b093077/**
+          PolicyExport/initiatives/_Preview_Configure_prerequisites_to_enable_Guest_Attestation_on_Trusted_Launch_enabled_VMs_281d9e47-d14d-4f05-b8eb-18f2c4a034ff/**
